@@ -85,7 +85,9 @@ function renderMood(){
 }
 function renderMovement(){
   const d=getToday();
-  document.querySelectorAll(".move").forEach(b=>b.classList.toggle("active",b.dataset.movement===d.movement));
+  document.querySelectorAll("[data-movement]").forEach(btn=>{
+    btn.classList.toggle("selected", btn.dataset.movement===d.movement);
+  });
 }
 function renderGlasses(){
   const d=getToday(), wrap=document.getElementById("glasses");
@@ -316,9 +318,6 @@ function renderSavedDays(){
     };
   });
 }
-
-
-
 function renderAll(){
   renderMood();renderMovement();renderGlasses();renderSkin();renderHair();renderGoals();
   renderWorkout();renderProgress();renderStreak();renderScreen();renderJournal();renderCalendar();
@@ -412,8 +411,6 @@ document.getElementById("saveToday").onclick=()=>{
   document.getElementById("saveToday").textContent="✓ Saved for Today";
   document.getElementById("saveToday").classList.add("saved");
 };
-
-
 function setTimerButton(name){
   document.querySelectorAll(".timer-control").forEach(b=>b.classList.remove("selected"));
   const el=document.getElementById(name);
@@ -480,3 +477,52 @@ renderDate();
 renderAll();
 updateBirthday();
 setInterval(updateBirthday,1000);
+
+
+
+
+
+
+
+
+document.getElementById("resetToday").onclick=function(){
+  if(!confirm("Reset today’s plan? This will clear today so you can start again.")) return;
+
+  const key=keyFor();
+
+  // Create a genuinely blank day using the same data shape the app expects.
+  state.days[key]={
+    mood:"",
+    glasses:0,
+    movement:"",
+    workout:{},
+    skin:Array(skinItems.length).fill(false),
+    hair:Array(hairItems.length).fill(false),
+    goals:Array(goalsItems.length).fill(false),
+    screen:"",
+    screenNote:"",
+    journal:{happy:"",sad:"",learned:"",proud:"",leave:"",note:""},
+    saved:false
+  };
+
+  // Persist the blank day using the app’s real storage function.
+  save();
+
+  // Redraw every section from the blank state.
+  renderAll();
+
+  // Clear text inputs explicitly.
+  document.querySelectorAll("textarea").forEach(x=>x.value="");
+  document.querySelectorAll('input[type="checkbox"]').forEach(x=>x.checked=false);
+
+  // Make Save Today available again.
+  const btn=document.getElementById("saveToday");
+  if(btn){
+    btn.disabled=false;
+    btn.textContent="Done — Save Today";
+    btn.classList.remove("saved","active","selected");
+  }
+
+  const msg=document.getElementById("saveMessage");
+  if(msg) msg.textContent="";
+};
