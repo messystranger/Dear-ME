@@ -106,7 +106,7 @@ textarea{width:100%;min-height:120px;border:0;outline:0;border-radius:14px;backg
 .btns{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
 button{font-family:inherit;cursor:pointer;transition:background .16s ease,color .16s ease,border-color .16s ease,transform .08s ease}
 button:active{transform:scale(.97)}
-.mood.active,.move.active,.move.selected,.screen-btn.active,.day-btn.active,.days button.active,
+.mood.active,.move.selected,.screen-btn.active,.day-btn.active,.days button.active,
 .glass.selected,.goal.checked,.exercise.checked,.timer-control.selected{
   background:#302b28 !important;color:#fff !important;border-color:#302b28 !important
 }

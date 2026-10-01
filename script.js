@@ -318,54 +318,10 @@ function renderSavedDays(){
 }
 
 
-document.getElementById("exportData").onclick=()=>{
-  const backup={
-    app:"Dear Me.",
-    version:5,
-    exportedAt:new Date().toISOString(),
-    days:state.days
-  };
-  const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  const stamp=new Date().toISOString().slice(0,10);
-  a.href=url;
-  a.download=`dear-me-backup-${stamp}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-  document.getElementById("dataMessage").textContent="Backup downloaded. Keep it somewhere safe.";
-};
-
-document.getElementById("importData").addEventListener("change",async e=>{
-  const file=e.target.files[0];
-  if(!file) return;
-  try{
-    const text=await file.text();
-    const backup=JSON.parse(text);
-    if(!backup || backup.app!=="Dear Me." || !backup.days || typeof backup.days!=="object"){
-      throw new Error("Invalid backup");
-    }
-    const replaceAll=confirm("Restore this backup? Choose OK to replace the current Dear Me records with the backup.");
-    if(!replaceAll){
-      document.getElementById("dataMessage").textContent="Import cancelled.";
-      e.target.value="";
-      return;
-    }
-    state={days:backup.days};
-    save();
-    renderAll();
-    document.getElementById("dataMessage").textContent="Your Dear Me records were restored successfully.";
-  }catch(err){
-    document.getElementById("dataMessage").textContent="That file doesn't look like a Dear Me backup.";
-  }
-  e.target.value="";
-});
 
 function renderAll(){
   renderMood();renderMovement();renderGlasses();renderSkin();renderHair();renderGoals();
-  renderWorkout();renderProgress();renderStreak();renderScreen();renderJournal();renderSavedDays();renderCalendar();
+  renderWorkout();renderProgress();renderStreak();renderScreen();renderJournal();renderCalendar();
   const saved=getToday().saved;
   const btn=document.getElementById("saveToday");
   if(btn){ btn.textContent=saved ? "✓ Saved for Today" : "Done — Save Today"; btn.classList.toggle("saved",!!saved); }
@@ -457,38 +413,6 @@ document.getElementById("saveToday").onclick=()=>{
   document.getElementById("saveToday").classList.add("saved");
 };
 
-document.getElementById("resetToday").onclick=()=>{
-  const button=document.getElementById("resetToday");
-  button.classList.add("saved");
-  setTimeout(()=>button.classList.remove("saved"),180);
-
-  if(!confirm("Reset everything you recorded for today?")) return;
-
-  delete state.days[keyFor()];
-  save();
-
-  // Reset the currently visible UI immediately.
-  document.querySelectorAll(".mood,.move,.screen-btn,.day-btn,.glass,.goal,.exercise,.timer-control")
-    .forEach(el=>el.classList.remove("active","selected","checked"));
-  document.querySelectorAll('input[type="checkbox"]').forEach(el=>el.checked=false);
-
-  document.querySelectorAll("textarea").forEach(el=>el.value="");
-  document.getElementById("screenNote").value="";
-  ["happy","sad","learned","proud","leave","note"].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.value="";
-  });
-
-  const saveBtn=document.getElementById("saveToday");
-  if(saveBtn){
-    saveBtn.textContent="Done — Save Today";
-    saveBtn.classList.remove("saved");
-  }
-  const saveMsg=document.getElementById("saveMessage");
-  if(saveMsg) saveMsg.textContent="";
-
-  renderAll();
-};
 
 function setTimerButton(name){
   document.querySelectorAll(".timer-control").forEach(b=>b.classList.remove("selected"));

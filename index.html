@@ -23,21 +23,6 @@
   
 </header>
 
-<!-- 1. MOOD -->
-<section class="card">
-  <h2>How was your day?</h2>
-  <p class="sub">No right answer. Just check in with yourself.</p>
-  <div class="mood-grid">
-    <button class="mood" data-mood="Great"><span class="dot"></span>Great</button>
-    <button class="mood" data-mood="Good"><span class="dot"></span>Good</button>
-    <button class="mood" data-mood="Meh"><span class="dot"></span>Meh</button>
-    <button class="mood" data-mood="Sad"><span class="dot"></span>Sad</button>
-    <button class="mood" data-mood="Tired"><span class="dot"></span>Tired</button>
-  </div>
-  <div class="message" id="moodMessage">Your check-in is waiting whenever you're ready.</div>
-</section>
-
-<!-- 5. MOVEMENT -->
 <section class="card">
   <h2>Move Your Body</h2>
   <p class="sub">Choose what feels good for your body today.</p>
@@ -65,7 +50,6 @@
   </div>
 </section>
 
-<!-- 6. FITNESS -->
 <section class="card">
   <h2>Your Weekly Fitness Plan</h2>
   <p class="sub">Strength, movement, cardio and recovery — without punishment.</p>
@@ -82,10 +66,8 @@
   </div>
 </section>
 
-<!-- 7. HYDRATION -->
 <section class="card full"><div class="title">Hydration</div><div class="sub">Six glasses. That's it. Tap when you've had one.</div><div class="glasses" id="glasses"></div></section>
 
-<!-- 8. SKIN + HAIR -->
 <section class="card">
   <h2>Did you take care of you today?</h2>
   <p class="sub">Little care is still care.</p>
@@ -101,7 +83,6 @@
   </div>
 </section>
 
-<!-- 9. SCREEN TIME -->
 <section class="card">
   <h2>How did my screen time feel today?</h2>
   <p class="sub">Not a screen-time punishment. Just notice how it felt.</p>
@@ -116,7 +97,24 @@
   </div>
 </section>
 
-<!-- 10. JOURNAL -->
+<section class="card">
+  <h2>Little Things That Matter</h2>
+  <p class="sub">These are gentle life-care reminders, not a test.</p>
+  <div class="check-list" id="goalList"></div>
+</section>
+
+<section class="card">
+  <h2>Sleep Calculator</h2>
+  <p class="sub">Tell me when you need to wake up and I'll show a few bedtime options.</p>
+  <div class="grid grid-2">
+    <div>
+      <input type="time" id="wakeTime">
+      <button class="reset" id="sleepBtn" style="margin:10px 0 0">Calculate bedtime</button>
+    </div>
+    <div id="sleepResult" class="sleep-result">Choose your wake-up time to see 7h, 8h and 9h options.</div>
+  </div>
+</section>
+
 <section class="card dear">
   <h2>Dear Me — Evening Check-In</h2>
   <p class="sub">You can tell yourself everything here. No judgment, no perfect answers.</p>
@@ -148,7 +146,6 @@
   </div>
 </section>
 
-<!-- 11. SUPPORT -->
 <section class="card">
   <h2>Do This When You Feel...</h2>
   <p class="sub">You don't always need to fix the feeling. Sometimes you just need a softer next step.</p>
@@ -162,83 +159,6 @@
   </div>
 </section>
 
-<!-- 12. LITTLE THINGS -->
-<section class="card">
-  <h2>Little Things That Matter</h2>
-  <p class="sub">These are gentle life-care reminders, not a test.</p>
-  <div class="check-list" id="goalList"></div>
-</section>
-
-<!-- 13. SLEEP -->
-<section class="card">
-  <h2>Sleep Calculator</h2>
-  <p class="sub">Tell me when you need to wake up and I'll show a few bedtime options.</p>
-  <div class="grid grid-2">
-    <div>
-      <input type="time" id="wakeTime">
-      <button class="reset" id="sleepBtn" style="margin:10px 0 0">Calculate bedtime</button>
-    </div>
-    <div id="sleepResult" class="sleep-result">Choose your wake-up time to see 7h, 8h and 9h options.</div>
-  </div>
-</section>
-
-<!-- 14. BIRTHDAY -->
-<section class="card">
-  <h2>Birthday Countdown</h2>
-  <p class="sub">A little reminder that another year of you is coming.</p>
-  <div class="countdown">
-    <div class="count"><strong id="bdDays">0</strong><span>days</span></div>
-    <div class="count"><strong id="bdHours">0</strong><span>hours</span></div>
-    <div class="count"><strong id="bdMinutes">0</strong><span>minutes</span></div>
-    <div class="count"><strong id="bdSeconds">0</strong><span>seconds</span></div>
-  </div>
-</section>
-
-
-
-<!-- 15. MY DATA -->
-<section class="card">
-  <h2>My Data</h2>
-  <p class="sub">Take your Dear Me records with you when you move between devices.</p>
-  <div class="grid-2">
-    <div class="routine">
-      <h2 style="font-size:21px">Export My Data</h2>
-      <p class="small" style="margin-bottom:12px">Download a private backup of your saved days and journal entries.</p>
-      <button class="primary" id="exportData" style="width:100%">Download My Backup</button>
-    </div>
-    <div class="routine">
-      <h2 style="font-size:21px">Import My Data</h2>
-      <p class="small" style="margin-bottom:12px">Use a backup file from another device to restore your records here.</p>
-      <input type="file" id="importData" accept=".json,application/json" style="width:100%;font-size:12px">
-    </div>
-  </div>
-  <div id="dataMessage" class="small" style="margin-top:12px;text-align:center"></div>
-</section>
-
-<!-- 15. SAVED DAYS -->
-<section class="card" id="savedDaysSection">
-  <h2>Your Saved Days</h2>
-  <p class="sub">Come back to your past check-ins whenever you want.</p>
-  <div id="savedDaysList"></div>
-</section>
-
-<!-- 17. CALENDAR LAST -->
-<section class="card">
-  <div class="calendar-head">
-    <div>
-      <h2 style="margin-bottom:2px">Your Little Calendar</h2>
-      <div class="small">★ marks days when you completed your full wellness check-in.</div>
-    </div>
-    <div class="cal-nav">
-      <button id="prevMonth">‹</button>
-      <button id="nextMonth">›</button>
-    </div>
-  </div>
-  <div class="cal-title" id="calTitle" style="margin-bottom:8px"></div>
-  <div class="calendar" id="calendar"></div>
-</section>
-
-<!-- 2. DAY AT A GLANCE -->
 <section class="card">
   <h2>Your Day at a Glance</h2>
   <p class="sub">A gentle little recap of what happened today.</p>
@@ -260,234 +180,6 @@
   <div id="completeNote"></div>
 </section>
 
-
-
-<!-- 5. MOVEMENT -->
-<section class="card">
-  <h2>Move Your Body</h2>
-  <p class="sub">Choose what feels good for your body today.</p>
-  <div class="movement-grid">
-    <button class="move" data-movement="Walk">Walk</button>
-    <button class="move" data-movement="Dance">Dance</button>
-    <button class="move" data-movement="Stretch">Stretch</button>
-    <button class="move" data-movement="Workout">Workout</button>
-    <button class="move" data-movement="Rest">Rest</button>
-  </div>
-  <div class="progress-wrap">
-    <h3>Want to move right now?</h3>
-    <p class="sub">Only if your body feels like it.</p>
-    <div class="grid grid-2">
-      <div>
-        <input id="timerMinutes" type="text" inputmode="numeric" placeholder="Minutes, e.g. 10">
-        <div class="btns" style="margin-top:10px;justify-content:flex-start"><button class="primary timer-control" id="startTimer">Start</button><button class="secondary timer-control" id="pauseTimer">Pause</button><button class="secondary timer-control" id="resetTimer">Reset</button></div>
-      </div>
-      <div class="card" style="padding:18px;background:#fcfafb;box-shadow:none">
-        <div class="small">Timer</div>
-        <div id="timerDisplay" style="font-size:30px;font-weight:700;margin-top:3px">00:00</div><div id="timerStatus" class="small" style="margin-top:3px">Ready when you are.</div>
-        <button class="secondary" id="resetTimer2" style="margin-top:10px">Reset</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6. FITNESS -->
-<section class="card">
-  <h2>Your Weekly Fitness Plan</h2>
-  <p class="sub">Strength, movement, cardio and recovery — without punishment.</p>
-  <div class="week" id="weekButtons"></div>
-  <div class="workout-box">
-    <div class="workout-title">
-      <div>
-        <h3 id="workoutDayTitle">Today's workout</h3>
-        <div class="small" id="workoutFocus"></div>
-      </div>
-      <span class="badge" id="workoutBadge">0 / 6</span>
-    </div>
-    <div class="check-list" id="workoutList"></div>
-  </div>
-</section>
-
-<!-- 7. HYDRATION -->
-<section class="card full"><div class="title">Hydration</div><div class="sub">Six glasses. That's it. Tap when you've had one.</div><div class="glasses" id="glasses"></div></section>
-
-<!-- 8. SKIN + HAIR -->
-<section class="card">
-  <h2>Did you take care of you today?</h2>
-  <p class="sub">Little care is still care.</p>
-  <div class="grid grid-2">
-    <div>
-      <h3>Skin</h3>
-      <div class="check-list" id="skinList"></div>
-    </div>
-    <div>
-      <h3>Hair</h3>
-      <div class="check-list" id="hairList"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 9. SCREEN TIME -->
-<section class="card">
-  <h2>How did my screen time feel today?</h2>
-  <p class="sub">Not a screen-time punishment. Just notice how it felt.</p>
-  <div class="screen-options">
-    <button class="screen-btn" data-screen="Balanced">Balanced</button>
-    <button class="screen-btn" data-screen="A little more">A little more</button>
-    <button class="screen-btn" data-screen="Way too much">Way too much</button>
-    <button class="screen-btn" data-screen="Intentional">Intentional</button>
-  </div>
-  <div style="margin-top:14px">
-    <textarea id="screenNote" placeholder="Anything you noticed about your screen time? (optional)"></textarea>
-  </div>
-</section>
-
-<!-- 10. JOURNAL -->
-<section class="card dear">
-  <h2>Dear Me — Evening Check-In</h2>
-  <p class="sub">You can tell yourself everything here. No judgment, no perfect answers.</p>
-  <div class="journal-grid">
-    <div class="journal-box">
-      <label for="happy">What made me happy today?</label>
-      <textarea id="happy" placeholder="A tiny moment counts too..."></textarea>
-    </div>
-    <div class="journal-box">
-      <label for="sad">What made me sad / upset?</label>
-      <textarea id="sad" placeholder="Let it out. You don't have to make it sound pretty."></textarea>
-    </div>
-    <div class="journal-box">
-      <label for="learned">What did I learn today?</label>
-      <textarea id="learned" placeholder="About yourself, life, someone, college — anything."></textarea>
-    </div>
-    <div class="journal-box">
-      <label for="proud">What am I proud of today?</label>
-      <textarea id="proud" placeholder="Even something really small counts."></textarea>
-    </div>
-    <div class="journal-box">
-      <label for="leave">What do I want to leave behind tonight?</label>
-      <textarea id="leave" placeholder="Something you don't want to carry into tomorrow..."></textarea>
-    </div>
-    <div class="journal-box">
-      <label for="note">A little note to myself</label>
-      <textarea id="note" placeholder="What do you want to tell yourself before sleeping?"></textarea>
-    </div>
-  </div>
-</section>
-
-<!-- 11. SUPPORT -->
-<section class="card">
-  <h2>Do This When You Feel...</h2>
-  <p class="sub">You don't always need to fix the feeling. Sometimes you just need a softer next step.</p>
-  <div class="feel-grid">
-    <div class="feel"><strong>Overwhelmed</strong><span>Take 5 slow breaths and pause.</span></div>
-    <div class="feel"><strong>Sad</strong><span>Write it out or talk to someone you trust.</span></div>
-    <div class="feel"><strong>Tired</strong><span>Put the checklist away. Rest too.</span></div>
-    <div class="feel"><strong>Restless</strong><span>Walk, stretch, or dance for a few minutes.</span></div>
-    <div class="feel"><strong>Anxious</strong><span>Put your phone down and breathe slowly.</span></div>
-    <div class="feel"><strong>Happy</strong><span>Let yourself enjoy the moment without guilt.</span></div>
-  </div>
-</section>
-
-<!-- 12. LITTLE THINGS -->
-<section class="card">
-  <h2>Little Things That Matter</h2>
-  <p class="sub">These are gentle life-care reminders, not a test.</p>
-  <div class="check-list" id="goalList"></div>
-</section>
-
-<!-- 13. SLEEP -->
-<section class="card">
-  <h2>Sleep Calculator</h2>
-  <p class="sub">Tell me when you need to wake up and I'll show a few bedtime options.</p>
-  <div class="grid grid-2">
-    <div>
-      <input type="time" id="wakeTime">
-      <button class="reset" id="sleepBtn" style="margin:10px 0 0">Calculate bedtime</button>
-    </div>
-    <div id="sleepResult" class="sleep-result">Choose your wake-up time to see 7h, 8h and 9h options.</div>
-  </div>
-</section>
-
-<!-- 14. BIRTHDAY -->
-<section class="card">
-  <h2>Birthday Countdown</h2>
-  <p class="sub">A little reminder that another year of you is coming.</p>
-  <div class="countdown">
-    <div class="count"><strong id="bdDays">0</strong><span>days</span></div>
-    <div class="count"><strong id="bdHours">0</strong><span>hours</span></div>
-    <div class="count"><strong id="bdMinutes">0</strong><span>minutes</span></div>
-    <div class="count"><strong id="bdSeconds">0</strong><span>seconds</span></div>
-  </div>
-</section>
-
-
-
-<!-- 15. MY DATA -->
-<section class="card">
-  <h2>My Data</h2>
-  <p class="sub">Take your Dear Me records with you when you move between devices.</p>
-  <div class="grid-2">
-    <div class="routine">
-      <h2 style="font-size:21px">Export My Data</h2>
-      <p class="small" style="margin-bottom:12px">Download a private backup of your saved days and journal entries.</p>
-      <button class="primary" id="exportData" style="width:100%">Download My Backup</button>
-    </div>
-    <div class="routine">
-      <h2 style="font-size:21px">Import My Data</h2>
-      <p class="small" style="margin-bottom:12px">Use a backup file from another device to restore your records here.</p>
-      <input type="file" id="importData" accept=".json,application/json" style="width:100%;font-size:12px">
-    </div>
-  </div>
-  <div id="dataMessage" class="small" style="margin-top:12px;text-align:center"></div>
-</section>
-
-<!-- 15. SAVED DAYS -->
-<section class="card" id="savedDaysSection">
-  <h2>Your Saved Days</h2>
-  <p class="sub">Come back to your past check-ins whenever you want.</p>
-  <div id="savedDaysList"></div>
-</section>
-
-<!-- 17. CALENDAR LAST -->
-<section class="card">
-  <div class="calendar-head">
-    <div>
-      <h2 style="margin-bottom:2px">Your Little Calendar</h2>
-      <div class="small">★ marks days when you completed your full wellness check-in.</div>
-    </div>
-    <div class="cal-nav">
-      <button id="prevMonth">‹</button>
-      <button id="nextMonth">›</button>
-    </div>
-  </div>
-  <div class="cal-title" id="calTitle" style="margin-bottom:8px"></div>
-  <div class="calendar" id="calendar"></div>
-</section>
-
-<!-- 2. DAY AT A GLANCE -->
-<section class="card">
-  <h2>Your Day at a Glance</h2>
-  <p class="sub">A gentle little recap of what happened today.</p>
-  <div class="recap-grid">
-    <div class="recap"><span class="small">Movement</span><strong id="recapMovement">Not checked yet</strong></div>
-    <div class="recap"><span class="small">Water</span><strong id="recapWater">0 / 6</strong></div>
-    <div class="recap"><span class="small">Skin</span><strong id="recapSkin">0 / 5</strong></div>
-    <div class="recap"><span class="small">Hair</span><strong id="recapHair">0 / 5</strong></div>
-    <div class="recap"><span class="small">Workout</span><strong id="recapWorkout">0 / 6</strong></div>
-    <div class="recap"><span class="small">Little things</span><strong id="recapGoals">0 / 4</strong></div>
-  </div>
-  <div class="progress-wrap">
-    <div class="progress-head">
-      <div><strong>Today's progress</strong><div class="small">Just a record of your day — not your worth.</div></div>
-      <div class="progress-number" id="progressNumber">0%</div>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-  </div>
-  <div id="completeNote"></div>
-</section>
-
-
-
-<!-- 3. LITTLE WINS -->
 <section class="card">
   <h2>Your Little Wins</h2>
   <p class="sub">Small things count too.</p>
@@ -499,7 +191,6 @@
   </div>
 </section>
 
-<!-- 4. STREAK -->
 <section class="card">
   <h2><span class="star">★</span>Your Streak</h2>
   <p class="sub">Only full-completion days count as stars. Rest days and imperfect days are still part of your life.</p>
@@ -511,6 +202,31 @@
   </div>
 </section>
 
+<section class="card">
+  <div class="calendar-head">
+    <div>
+      <h2 style="margin-bottom:2px">Your Little Calendar</h2>
+      <div class="small">★ marks days when you completed your full wellness check-in.</div>
+    </div>
+    <div class="cal-nav">
+      <button id="prevMonth">‹</button>
+      <button id="nextMonth">›</button>
+    </div>
+  </div>
+  <div class="cal-title" id="calTitle" style="margin-bottom:8px"></div>
+  <div class="calendar" id="calendar"></div>
+</section>
+
+<section class="card">
+  <h2>Birthday Countdown</h2>
+  <p class="sub">A little reminder that another year of you is coming.</p>
+  <div class="countdown">
+    <div class="count"><strong id="bdDays">0</strong><span>days</span></div>
+    <div class="count"><strong id="bdHours">0</strong><span>hours</span></div>
+    <div class="count"><strong id="bdMinutes">0</strong><span>minutes</span></div>
+    <div class="count"><strong id="bdSeconds">0</strong><span>seconds</span></div>
+  </div>
+</section>
 
 <section class="card dear" id="saveTodayCard">
   <h2>Done for today?</h2>
@@ -518,10 +234,6 @@
   <button class="primary" id="saveToday" style="width:100%;padding:13px 18px;border-radius:14px">Done — Save Today</button>
   <div id="saveMessage" class="small" style="text-align:center;margin-top:10px"></div>
 </section>
-
-
-
-<button class="reset" id="resetToday">Reset today's plan</button>
 
 <footer><div style="font-family:'Playfair Display',serif;font-size:18px;color:#917766;margin-bottom:7px">Everything is working in your favor.</div>Dear Me. — a little corner to come back to yourself.</footer>
 </div>
